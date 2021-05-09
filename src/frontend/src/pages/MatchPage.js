@@ -19,9 +19,6 @@ export const MatchPage =  () => {
     }, [teamName, year]
   );
 
-  if(!matches || matches.length==0){
-    return "<h1>No Match Found </h1>"
-  }
   return (
     <div className="MatchPage">
     <div className="year-selector">
@@ -29,9 +26,12 @@ export const MatchPage =  () => {
         <YearSelector teamName={teamName} />
     </div>
     <div>
+        
         <h1 className="page-heading">{teamName} matches in {year}</h1>
         {
+            matches?
             matches.map(match => <MatchDetailsCard key={match.id} teamName={teamName} match={match} />)
+            :"Match not Found"
         }
     </div>
 

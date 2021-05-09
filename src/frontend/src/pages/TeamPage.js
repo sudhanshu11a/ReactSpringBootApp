@@ -14,6 +14,7 @@ export const TeamPage =  () => {
       const fetchMatch = async () => {
         const response = await fetch(`${process.env.REACT_APP_API_ROOT_URL}/team/${teamName}`);
         const data = await response.json();
+        console.log(data);
         setTeam(data);
       };
       fetchMatch();
@@ -27,15 +28,18 @@ export const TeamPage =  () => {
   return (
     <div className="TeamPage">
     <div className="team-name-section">
+        <img src={`../logo/${team.teamLogo}`} alt={team.teamName} height={200} width={400}/>
         <h1 className="team-name">{team.teamName}</h1>
     </div>
     <div className="win-loss-section">
         Wins / Losses
         <PieChart
             data={[
-                { title: 'Losses', value: team.totalMatches - team.totalWins, color: '#a34d5d' },
+                { title: 'Losses', value: team.totalMatches - team.totalWins, color: '#a34d5d'},
                 { title: 'Wins', value: team.totalWins, color: '#4da375' },
             ]}
+            radius={PieChart.defaultProps.radius - 7}
+            label={({ dataEntry }) => dataEntry.value}
             />
     </div>
     <div className="match-detail-section">

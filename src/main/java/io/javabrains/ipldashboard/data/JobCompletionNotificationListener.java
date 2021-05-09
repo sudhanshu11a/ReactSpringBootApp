@@ -32,7 +32,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
     @Transactional
     public void afterJob(JobExecution jobExecution) {
         if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
-            log.info("!!! JOB FINISHED! Time to verify the results");
+            log.info("!!! JOB FINISHED For Match Data! ");
 
             Map<String, Team> teamData = new HashMap<>();
             em.createQuery("select m.team1, count(*) FROM Match m group by m.team1", Object[].class).getResultList()
@@ -52,7 +52,11 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
                     });
 
         
-            teamData.values().forEach(team -> em.persist(team));
+            teamData.values().forEach(team ->{
+                    team.setTeamLogo(team.getTeamName().replace(" ", "_")+"_Logo.png");
+                    em.persist(team);
+            });
+            log.info("!!! JOB FINISHED for Team Data! ");
             //teamData.values().forEach(t -> System.out.println(t));
         }
     }

@@ -2,14 +2,14 @@ import { React } from 'react';
 import { Link } from 'react-router-dom';
 
 import './TeamTile.scss';
-export const TeamTile = ({teamName}) => {
+export const TeamTile = ({team}) => {
 
 
     return (
         <div className="TeamTile">
             <h1>
-                    <Link to={`/teams/${teamName}`}>
-                        {teamName}
+                    <Link src={team.teamName} to={`/teams/${team.teamName}`}>
+                        <img src={`../logo/${team.teamLogo}`} alt={team.teamName} height={200} width={200}/>
                     </Link>
                 </h1>
         </div>

@@ -17,6 +17,7 @@ public class Team{
     private String teamName;
     private long totalMatches;
     private long totalWins;
+    private String teamLogo;
 
     @Transient
     private List<Match> matchList;
@@ -51,6 +52,14 @@ public class Team{
     }
     public void setTotalWins(long totalWins) {
         this.totalWins = totalWins;
+    }
+
+    public String getTeamLogo() {
+        return teamLogo;
+    }
+
+    public void setTeamLogo(String teamLogo) {
+        this.teamLogo = teamLogo;
     }
 
     public List<Match> getMatchList() {
