@@ -18,6 +18,7 @@ export const HomePage = () => {
          fetchAllTeams();
         }, []
     );
+    
 
     return (
         <div className="HomePage">
